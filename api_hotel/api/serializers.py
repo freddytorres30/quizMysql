@@ -2,9 +2,6 @@ from rest_framework import serializers
 from .models import Clientes, Reservas, Habitaciones, Pagos
 
 
-from rest_framework import serializers
-from .models import Clientes
-
 class ClientesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Clientes
