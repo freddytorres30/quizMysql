@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'api',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -75,11 +77,14 @@ WSGI_APPLICATION = 'api_hotel.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'testdjango',  # El nombre de tu base de datos en MySQL
+        'USER': 'freddy',  # Tu usuario de MySQL
+        'PASSWORD': 'fredroot_30FWD',  # La contraseña de tu usuario MySQL
+        'HOST': '127.0.0.1',  # Si estás ejecutando MySQL localmente
+        'PORT': '3306',  # El puerto por defecto de MySQL
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
