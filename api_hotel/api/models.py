@@ -2,8 +2,12 @@
 import re
 from django.core.exceptions import ValidationError
 from django.db import models
+import decimal
 
 def validar_sin_espacios(value):
+
+    if isinstance(value, decimal.Decimal):
+        return  
     if not value.strip():
         raise ValidationError('El campo no puede estar vacío o contener solo espacios.')
 
@@ -43,13 +47,13 @@ class Reservas(models.Model):
     Habitaciones = models.ForeignKey('Habitaciones', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.fecha_Entrada, self.Clientes, self.Habitaciones
+        return f'{self.fecha_Entrada} - {self.Clientes} - {self.Habitaciones}'
     
 
 
 class Habitaciones(models.Model):
-    numero_Habitacion = models.CharField(max_length=50)
-    tipo_Habitacion = models.CharField(max_length=100)
+    numero_Habitacion = models.CharField(max_length=50, validators=[validar_sin_espacios])
+    tipo_Habitacion = models.CharField(max_length=100, validators=[validar_sin_espacios])
     precioPorNoche  = models.IntegerField()
 
     def __str__(self):
@@ -59,11 +63,10 @@ class Habitaciones(models.Model):
 
 class Pagos(models.Model):
     monto = models.IntegerField()
-    metodoPago = models.CharField(max_length=100)
+    metodoPago = models.CharField(max_length=100, validators=[validar_sin_espacios])
     fechaPago = models.DateField()
     Reservas = models.ForeignKey('Reservas', on_delete=models.CASCADE)
 
-
     def __str__(self):
-        return self.monto, self.Reservas
+        return f'{self.monto} - {self.Reservas}'
     

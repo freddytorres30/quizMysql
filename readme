@@ -1,0 +1,51 @@
+# Sistema de Reservas
+
+Este proyecto es un sistema de gestión de reservas que permite crear clientes, habitaciones, reservas y pagos utilizando Django como framework.
+
+## Estructura de Modelos
+
+Los modelos utilizados en este sistema son:
+
+### Clientes
+
+El modelo **Clientes** almacena información básica sobre los clientes que realizan reservas, incluyendo su nombre, apellido, correo electrónico, número de teléfono y la fecha de registro. Se implementan validaciones para asegurar que los campos no estén vacíos y que el correo electrónico tenga un formato válido.
+
+### Habitaciones
+
+El modelo **Habitaciones** contiene detalles sobre las habitaciones disponibles para reserva, como el número de la habitación, el tipo de habitación y el precio por noche. También se implementa una validación para evitar que el campo de número de habitación esté vacío.
+
+### Reservas
+
+El modelo **Reservas** relaciona a los clientes con las habitaciones y almacena información sobre la fecha de entrada, la cantidad de noches y la fecha de reserva. Este modelo utiliza claves foráneas para vincular las reservas con los clientes y las habitaciones, garantizando la integridad de los datos.
+
+### Pagos
+
+El modelo **Pagos** gestiona la información relacionada con los pagos realizados por los clientes por sus reservas. Almacena el monto pagado, el método de pago y la fecha del pago. Al igual que en el modelo de reservas, se usa una clave foránea para asociar cada pago con una reserva específica.
+
+## Instrucciones para Hacer una Reserva
+
+### 1. Crear un Cliente
+
+Para hacer una reserva, primero debes crear un cliente. Debes proporcionar el nombre, apellido, correo electrónico y número de teléfono del cliente. Este cliente se guardará en la base de datos, y se asegurará de que el correo electrónico no esté vacío ni sea utilizado por otro cliente.
+
+### 2. Crear una Habitación
+
+Luego, debes crear una habitación. Necesitarás especificar el número de habitación, el tipo de habitación y el precio por noche. Al igual que con los clientes, se validará que el número de habitación no esté vacío.
+
+### 3. Hacer una Reserva
+
+Después de tener el cliente y la habitación creados, puedes proceder a hacer la reserva. Necesitarás definir la fecha de entrada y la cantidad de noches que el cliente desea quedarse. Al guardar la reserva, se vincularán el cliente y la habitación seleccionada.
+
+### 4. Hacer un Pago (Opcional)
+
+Si deseas registrar un pago asociado a la reserva, puedes hacerlo proporcionando el monto del pago, el método de pago y la fecha del mismo. Este pago estará vinculado a la reserva correspondiente.
+
+## Consideraciones
+
+- Es fundamental manejar excepciones al guardar los modelos para capturar posibles errores de validación.
+- Verifica siempre la disponibilidad de habitaciones antes de realizar una nueva reserva.
+- Implementa lógica adicional para evitar que los clientes hagan reservas en fechas que ya están ocupadas.
+
+## Contribuciones
+
+Si deseas contribuir a este proyecto, por favor envía un pull request o abre un issue para discutir posibles cambios.
